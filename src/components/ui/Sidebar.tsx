@@ -24,7 +24,8 @@ function Sidebar() {
                 position:'sticky',
                 left:0,
                 top:0,
-                bottom:0
+                bottom:0,
+                backgroundColor:'green'
             }}
         >
             <div 
@@ -36,13 +37,18 @@ function Sidebar() {
                     marginBottom:'1rem'
                 }}
             >
-                PH-University
+                University Management
             </div>
             <Menu 
-                theme="dark" 
+                
                 defaultSelectedKeys={['1']} 
                 mode="inline" 
                 items={sidebaritems(role)} 
+                style={{
+                    backgroundColor:'green',
+                    color:'white',
+                    fontSize:'15px'
+                }}
             />
         </Sider>
     )

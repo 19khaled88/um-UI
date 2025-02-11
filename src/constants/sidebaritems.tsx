@@ -22,11 +22,13 @@ export const sidebaritems=(role:string)=> {
             label:"Profile",
             key:"profile",
             icon:<UserOutlined />,
+            
             children:[
                 {
                     label:<Link href={`/${role}/profile`}>Account Profile</Link>,
                     key:`/${role}/profile`,
-                    icon:<ProfileOutlined />
+                    icon:<ProfileOutlined />,
+                    
                 },
                 {
                     label:<Link href={`/${role}/change-password`}>Change Password</Link>,
