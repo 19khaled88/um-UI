@@ -1,6 +1,6 @@
 import React from 'react'
 
-function FacultyPage() {
+const FacultyPage=()=> {
   return (
     <div>
         <h1>This is faculty page</h1>

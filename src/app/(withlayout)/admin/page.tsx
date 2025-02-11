@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AdminPage() {
+const AdminPage=()=> {
   return (
     <div>
         <h1>This is admin page</h1>
