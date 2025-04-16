@@ -1,4 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
+import { baseApi } from "./api/baseApi";
 
 // Define action type
 interface Action {
@@ -23,5 +24,9 @@ export const rootReducer = combineReducers({
     exmple:exmpleReducer
 });
 
+
+export const reducer = {
+    [baseApi.reducerPath]:baseApi.reducer
+}
 
 

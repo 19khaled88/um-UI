@@ -25,7 +25,8 @@ function Sidebar() {
                 left:0,
                 top:0,
                 bottom:0,
-                backgroundColor:'green'
+                backgroundColor:'purple',
+                
             }}
         >
             <div 
@@ -34,7 +35,8 @@ function Sidebar() {
                     fontSize:'2rem',
                     textAlign:'center',
                     fontWeight:'bold',
-                    marginBottom:'1rem'
+                    marginBottom:'1rem',
+                    
                 }}
             >
                 University Management
@@ -45,9 +47,10 @@ function Sidebar() {
                 mode="inline" 
                 items={sidebaritems(role)} 
                 style={{
-                    backgroundColor:'green',
+                    backgroundColor:'purple',
                     color:'white',
-                    fontSize:'15px'
+                    fontSize:'15px',
+                    fontWeight:'bold'
                 }}
             />
         </Sider>

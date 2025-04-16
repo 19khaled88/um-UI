@@ -22,15 +22,17 @@ export const metadata: Metadata = {
 // const RootLayout=({ children}: Readonly<{children: React.ReactNode;}>)=> {
  const RootLayout=({ children}: React.PropsWithChildren)=> {
   return (
-    <Providers>
+    
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
           <AntdRegistry>
-            {children}
+            <Providers>
+              {children}
+            </Providers>
           </AntdRegistry>
         </body>
       </html>
-    </Providers>
+    
   );
 }
 
