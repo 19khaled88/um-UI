@@ -1,0 +1,28 @@
+import UMBreadCrumb from '@/components/ui/UMBreadCrum'
+import React from 'react'
+const base = 'super_admin'
+function CoursePage() {
+  return (
+    <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
+    <UMBreadCrumb
+      items={[
+        {
+          label: `${base}`,
+          link: `/${base}`,
+        },
+        {
+          label: `management`,
+          link: `/${base}/management`,
+        },
+        {
+          label: `course`,
+          link: `/${base}/management/course`,
+        },
+      ]}
+    />
+      <h1>This is course page</h1>
+    </div>
+  )
+}
+
+export default CoursePage

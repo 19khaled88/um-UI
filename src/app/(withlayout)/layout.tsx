@@ -1,36 +1,41 @@
-"use client"
-import Contents from '@/components/ui/Content';
-import Sidebar from '@/components/ui/Sidebar';
-import { isLoggedIn } from '@/service/auth.service';
-import { authKey } from '@/types';
-import { Layout } from 'antd';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+"use client";
 
-const DashboardLayout = ({children}:{children:React.ReactNode}) => {
-  const loginStatus = isLoggedIn(authKey);
+import "@ant-design/v5-patch-for-react-19";
+import Contents from "@/components/ui/Content";
+import Sidebar from "@/components/ui/Sidebar";
+import { isLoggedIn } from "@/service/auth.service";
+import { authKey } from "@/types";
+import { Layout } from "antd";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import LoadingComponent from "@/components/loading/LoadingPage";
+
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const [isLoading,setIsLoading] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
-  useEffect(()=>{
-    if(!loginStatus){
-      router.push('/login');
-    }
-    setIsLoading(true);
-  },[router,isLoading,loginStatus]);
+  useEffect(() => {
+    const checkAuth = async () => {
+      const status = await isLoggedIn(authKey);
+      if (!status) {
+        router.push("/login");
+      } else {
+        setIsAuthenticated(true);
+      }
+    };
 
+    checkAuth();
+  }, [router]);
 
-  if(!loginStatus){
-    return <p>Loading....Page</p>
+  if (isAuthenticated === null) {
+    return <LoadingComponent />
   }
 
   return (
-   <Layout hasSider>
-    <Sidebar />
-      
-    <Contents>
-      {children}
-    </Contents>
+    <Layout hasSider>
+      <Sidebar />
+
+      <Contents>{children}</Contents>
     </Layout>
   );
 };

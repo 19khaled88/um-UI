@@ -1,11 +1,15 @@
-import React from 'react'
+'use client'
+import React from 'react';
+import {  Flex, Spin } from 'antd';
 
-const Loading = () => {
+const Loading: React.FC = () => {
+ 
   return (
-    <div>
-      <h1>Loading....</h1>
-    </div>
-  )
-}
+    <Flex align="center" justify='center' style={{height:'100vh'}} gap="middle">
 
-export default Loading
+    <Spin size="large" fullscreen={true}/>
+  </Flex>
+  );
+};
+
+export default Loading;

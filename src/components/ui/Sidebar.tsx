@@ -1,17 +1,37 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Menu,Layout} from 'antd'
 const {Sider} = Layout
 
 import { sidebaritems } from '@/constants/sidebaritems';
+
+import { getUserInfo} from '@/service/auth.service';
+import { authKey } from '@/types';
 import { USER_ROLE } from '@/constants/role';
+import LoadingComponent from '../loading/LoadingPage';
+
 
 
 
 function Sidebar() {
     const [collapsed, setCollapsed] = useState(false);
-    const role = USER_ROLE.ADMIN
+    const [role, setRole] = useState<USER_ROLE | null>(null)
+
+    useEffect(()=>{
+        const userInfo = getUserInfo(authKey);
+        
+        if(userInfo && typeof userInfo !== 'string' && Object.values(USER_ROLE).includes(userInfo.role as USER_ROLE)){
+            setRole(userInfo.role as USER_ROLE)
+        } else {
+            setRole(USER_ROLE.STUDENT)
+        }
+    },[])
+    
+    if(role === null){
+        return <LoadingComponent />
+    }
+    
     return (
         <Sider 
             collapsible 
@@ -28,6 +48,7 @@ function Sidebar() {
                 backgroundColor:'purple',
                 
             }}
+            className='custom-sidebar'
         >
             <div 
                 style={{
@@ -42,16 +63,19 @@ function Sidebar() {
                 University Management
             </div>
             <Menu 
-                
+                // theme='dark'
                 defaultSelectedKeys={['1']} 
                 mode="inline" 
                 items={sidebaritems(role)} 
                 style={{
+                    
                     backgroundColor:'purple',
                     color:'white',
                     fontSize:'15px',
-                    fontWeight:'bold'
+                    fontWeight:'bold',
+                    
                 }}
+                className='custom-menu'
             />
         </Sider>
     )

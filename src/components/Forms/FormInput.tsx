@@ -1,11 +1,11 @@
 "use client";
+import { getErrorMessageByPropertyName } from "@/utils/schema-validator";
 import { Input } from "antd";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface IInputProps  {
     name:string;
     type?:string;
-  
     size?:"large" | "small";
     value?:string | string[] | undefined;
     id?:string;
@@ -17,7 +17,9 @@ interface IInputProps  {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FormInput:React.FC<IInputProps> = ({name,type,size,value,id,placeholder,validation,label})  => {
-  const {control} = useFormContext()
+  const {control,formState:{errors}} = useFormContext()
+
+  const errorMessage = getErrorMessageByPropertyName(errors,name)
   return (
     <>
         {label ? <label htmlFor={id}>{label}</label> : null}
@@ -44,6 +46,7 @@ const FormInput:React.FC<IInputProps> = ({name,type,size,value,id,placeholder,va
                 />
             )}
         />
+        <small style={{color:'red'}}>{errorMessage}</small>
     </>
    
   );
